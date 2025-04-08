@@ -39,6 +39,19 @@
           userId: 1,
         };
 
+        // get 이외의 요청 방식에서는 url과 함께 요청에 관련된 정보를
+        // 객체 형태로 전달하셔야 합니다. (method, headers, body)
+        fetch(`${url}/boards`, {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json',
+          },
+          body: JSON.stringify(payload),
+        })
+          .then((res) => res.json())
+          .then((data) => console.log(data));
+
+        /*
         const xhr = new XMLHttpRequest();
         // 요청 준비
         // 백엔드와 사전에 약속된 전송 방식과 약속된 url로 요청, 응답을 처리한다!
@@ -57,6 +70,8 @@
 
           console.log(xhr.response);
         };
+
+        */
       });
     </script>
   </body>

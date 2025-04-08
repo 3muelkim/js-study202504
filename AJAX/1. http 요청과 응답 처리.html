@@ -27,7 +27,20 @@
       const $btn = document.getElementById('load');
       $btn.addEventListener('click', (e) => {
         const url = 'https://jsonplaceholder.typicode.com';
+        fetch(`${url}/users/1/posts`)
+          .then((res) => res.json())
+          .then((boardList) => {
+            // 화면에 렌더링 하자.
+            const $ul = document.getElementById('contents');
+            boardList.forEach((b) => {
+              const $newLi = document.createElement('li');
+              $newLi.textContent = `# 글번호: ${b.id}, 제목: ${b.title}, 작성자 아이디: ${b.userId}`;
 
+              $ul.appendChild($newLi);
+            });
+          });
+
+        /*
         const xhr = new XMLHttpRequest();
         // 요청 준비
         xhr.open('GET', `${url}/users/1/posts`);
@@ -59,6 +72,7 @@
             $ul.appendChild($newLi);
           });
         };
+        */
       });
     </script>
   </body>
